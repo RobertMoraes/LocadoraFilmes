@@ -1,18 +1,15 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Filmes {
 
-    String nmFilme;
-    String genero;
-    String sinopse;
-    String elenco;
-    int duracao;
-    int anoLancamento;
-    boolean incluidoPlano;
-    double avaliacao;
-    double somaAvaliacoes;
-    int totalAvaliacoes;
+    private final String nmFilme;
+    private final String genero;
+    private final String sinopse = null;
+    private final String elenco = null;
+    private final int duracao;
+    private final int anoLancamento;
+    private final boolean incluidoPlano;
+    private final double avaliacao = 0;
+    private double somaAvaliacoes;
+    private int totalAvaliacoes;
 
     public Filmes(String nmFilme, String genero, int duracao, int anoLancamento, boolean incluidoPlano) {
         this.nmFilme = nmFilme;
@@ -31,8 +28,8 @@ public class Filmes {
     }
 
     void avaliarFilmes(double avaliacao) {
-        somaAvaliacoes += avaliacao;
-        totalAvaliacoes++;
+        this.somaAvaliacoes += avaliacao;
+        this.totalAvaliacoes++;
     }
 
     void exibirMedia() {
