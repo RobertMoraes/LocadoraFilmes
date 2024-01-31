@@ -2,6 +2,7 @@ import br.com.project.locacao.calculo.CalculadoraTempo;
 import br.com.project.locacao.calculo.FiltroRemomendacao;
 import br.com.project.locacao.modelos.Filmes;
 import br.com.project.locacao.modelos.Series;
+import br.com.project.locacao.modelos.Titulos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class LocacaoFilmes {
             System.out.println("=============================================");
         }
 
-        List<Series> lsSeries = new ArrayList<>();
+        List<Titulos> lsSeries = new ArrayList<>();
 
         lsSeries.add(new Series("Poderoso Chefão",
                 "Ação",
@@ -82,8 +83,10 @@ public class LocacaoFilmes {
         lsSeries.get(2).avaliarFilmes(7.0);
         lsSeries.get(2).avaliarFilmes(4.0);
 
-        for (Series lsSerie : lsSeries) {
-            lsSerie.exibirFichaTecnica();
+        
+        for (Titulos lsSerie : lsSeries) {
+            Series serie = (Series) lsSerie;
+            serie.exibirFichaTecnica();
             lsSerie.exibirMedia();
             System.out.println("=============================================");
         }
@@ -95,5 +98,14 @@ public class LocacaoFilmes {
         System.out.println(calculadoraTempo.getTempoTotal());
 
         System.out.println(lsFilmes);
+
+        for(Titulos item : lsSeries){
+            System.out.println(item.getNmTitulo());
+            Series serie = (Series) item;
+            System.out.println(serie.getClassificacao());
+        }
+
+        lsSeries.forEach(serie -> System.out.println(serie.getNmTitulo()));
+        lsSeries.forEach(System.out::println);
     }
 }
