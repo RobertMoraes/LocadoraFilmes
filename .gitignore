@@ -5,6 +5,7 @@ out/
 !**/src/test/**/out/
 locadorFilmes.iml
 *.txt
+*.json
 
 ### Eclipse ###
 .apt_generated
