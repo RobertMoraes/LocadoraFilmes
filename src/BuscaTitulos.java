@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BuscaTitulos {
+    static TituloOmdb tituloOmdb;
     @SneakyThrows
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -35,18 +36,19 @@ public class BuscaTitulos {
             try {
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://www.omdbapi.com/?apikey=92860590&t={tituloFormatado}".replace("{tituloFormatado}", tituloFormatado)))
+                        .uri(URI.create("http://www.omdbapi.com/?apikey=92860590&t={tituloFormatado}"
+                                .replace("{tituloFormatado}", tituloFormatado)))
                         .build();
-                client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-                        .thenApply(HttpResponse::body)
-                        .thenAccept(System.out::println)
-                        .join();
+//                client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//                        .thenApply(HttpResponse::body)
+//                        .thenAccept(System.out::println)
+//                        .join();
 
-                TituloOmdb tituloOmdb = gson.fromJson(client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).join().body(), TituloOmdb.class);
-                System.out.println(tituloOmdb.toString());
+                tituloOmdb = gson.fromJson(client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                        .join().body(), TituloOmdb.class);
+                System.out.println("Titulo Omdb: " + tituloOmdb.toString());
 
                 Titulos titulos = new Titulos(tituloOmdb);
-
                 lsTitulos.add(titulos);
 
             }catch (Exception e){
