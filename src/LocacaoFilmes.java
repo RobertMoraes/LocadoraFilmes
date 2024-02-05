@@ -5,6 +5,7 @@ import br.com.project.locacao.modelos.Series;
 import br.com.project.locacao.modelos.Titulos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LocacaoFilmes {
@@ -13,20 +14,20 @@ public class LocacaoFilmes {
 
         lsFilmes.add(new Filmes("Sonic 2",
                 "Ação",
-                120,
-                2021,
+                "120",
+                "2021",
                 true,
                 "Teste"));
         lsFilmes.add(new Filmes("Homem-Aranha: Sem volta para casa",
                 "Ação",
-                120,
-                2021,
+                "120",
+                "2021",
                 true,
                 "Teste"));
         lsFilmes.add(new Filmes("Poderoso Chefão",
                 "Ação",
-                240,
-                1999,
+                "240",
+                "1999",
                 true,
                 "Teste"));
 
@@ -50,24 +51,24 @@ public class LocacaoFilmes {
 
         lsSeries.add(new Series("Poderoso Chefão",
                 "Ação",
-                240,
-                1999,
+                "240",
+                "1999",
                 true,
                 10,
                 8,
                 35));
         lsSeries.add(new Series("Homem-Aranha: Sem volta para casa",
                 "Ação",
-                120,
-                2021,
+                "120",
+                "2021",
                 true,
                 10,
                 8,
                 35));
         lsSeries.add(new Series("Sonic 2",
                 "Ação",
-                120,
-                2021,
+                "120",
+                "2021",
                 true,
                 10,
                 8,
@@ -83,6 +84,7 @@ public class LocacaoFilmes {
         lsSeries.get(2).avaliarFilmes(7.0);
         lsSeries.get(2).avaliarFilmes(4.0);
 
+        Collections.sort(lsSeries);
         
         for (Titulos lsSerie : lsSeries) {
             Series serie = (Series) lsSerie;
@@ -97,8 +99,6 @@ public class LocacaoFilmes {
 
         System.out.println(calculadoraTempo.getTempoTotal());
 
-        System.out.println(lsFilmes);
-
         for(Titulos item : lsSeries){
             System.out.println(item.getNmTitulo());
             Series serie = (Series) item;
@@ -106,6 +106,8 @@ public class LocacaoFilmes {
         }
 
         lsSeries.forEach(serie -> System.out.println(serie.getNmTitulo()));
-        lsSeries.forEach(System.out::println);
+        System.out.println(lsFilmes);
+        lsFilmes.sort(Titulos::compareTo);
+        System.out.println(lsFilmes);
     }
 }

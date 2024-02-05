@@ -5,7 +5,7 @@ import br.com.project.locacao.calculo.Classificacao;
 public class Filmes extends Titulos implements Classificacao {
     private String nmDiretor;
 
-    public Filmes(String nmTitulo, String genero, int duracao, int anoLancamento, boolean incluidoPlano, String nmDiretor) {
+    public Filmes(String nmTitulo, String genero, String duracao, String anoLancamento, boolean incluidoPlano, String nmDiretor) {
         super(nmTitulo, genero, duracao, anoLancamento, incluidoPlano);
         this.nmDiretor = nmDiretor;
     }
@@ -27,7 +27,7 @@ public class Filmes extends Titulos implements Classificacao {
     }
 
     @Override
-    public int getClassificacao() {
+    public double getClassificacao() {
         return super.getTotalAvaliacoes()/2;
     }
 

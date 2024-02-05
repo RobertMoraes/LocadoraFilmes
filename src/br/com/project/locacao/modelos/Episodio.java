@@ -33,7 +33,7 @@ public class Episodio implements Classificacao {
     }
 
     @Override
-    public int getClassificacao() {
+    public double getClassificacao() {
         if (totalVisualizacoes > 100) {
             return 4;
         } else {

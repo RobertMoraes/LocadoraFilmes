@@ -1,24 +1,44 @@
 package br.com.project.locacao.modelos;
 
-public class Titulos {
+import com.google.gson.annotations.SerializedName;
+
+public class Titulos implements Comparable<Titulos> {
+    @SerializedName("Title")
     private final String nmTitulo;
+    @SerializedName("Genre")
     private final String genero;
-    private final String sinopse = null;
-    private final String elenco = null;
-    private final int duracao;
-    private final int anoLancamento;
-    private final boolean incluidoPlano;
-    private final double avaliacao = 0;
+    @SerializedName("Plot")
+    private String sinopse = null;
+    @SerializedName("Actors")
+    private String elenco = null;
+    @SerializedName("Runtime")
+    private final String duracao;
+    @SerializedName("Year")
+    private final String anoLancamento;
+
+    private boolean incluidoPlano = false;
+
+    private double avaliacao = 0;
+
     private double somaAvaliacoes;
 
     private int totalAvaliacoes;
 
-    public Titulos(String nmTitulo, String genero, int duracao, int anoLancamento, boolean incluidoPlano) {
+    public Titulos(String nmTitulo, String genero, String duracao, String anoLancamento, boolean incluidoPlano) {
         this.nmTitulo = nmTitulo;
         this.genero = genero;
         this.duracao = duracao;
         this.anoLancamento = anoLancamento;
         this.incluidoPlano = incluidoPlano;
+    }
+
+    public Titulos(TituloOmdb tituloOmdb) {
+        anoLancamento = tituloOmdb.Year();
+        duracao = tituloOmdb.Runtime();
+        genero = tituloOmdb.Genre();
+        nmTitulo = tituloOmdb.title();
+        sinopse = tituloOmdb.Plot();
+        elenco = tituloOmdb.Actors();
     }
 
     public void avaliarFilmes(double avaliacao) {
@@ -31,7 +51,7 @@ public class Titulos {
     }
 
     public int getDuracao() {
-        return duracao;
+        return Integer.parseInt(duracao.split(" ")[0]) * 60;
     }
 
     public String getNmTitulo() {
@@ -42,7 +62,7 @@ public class Titulos {
         return genero;
     }
 
-    public int getAnoLancamento() {
+    public String getAnoLancamento() {
         return anoLancamento;
     }
 
@@ -50,4 +70,23 @@ public class Titulos {
         return totalAvaliacoes;
     }
 
+    public double getAvaliacao() {
+        return avaliacao = somaAvaliacoes / totalAvaliacoes;
+    }
+
+    @Override
+    public String toString() {
+        return "Titulos{" +
+                "Titulo='" + nmTitulo + '\'' +
+                ", genero='" + genero + '\'' +
+                ", sinopse='" + sinopse + '\'' +
+                ", elenco='" + elenco + '\'' +
+                ", anoLancamento=" + anoLancamento +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Titulos o) {
+        return this.getNmTitulo().compareTo(o.getNmTitulo());
+    }
 }

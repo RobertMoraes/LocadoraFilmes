@@ -8,7 +8,7 @@ public class Series extends Titulos implements Classificacao {
     private int epPorTemporada;
     private int minPorEpisodio;
 
-    public Series(String nmTitulo, String genero, int duracao, int anoLancamento,
+    public Series(String nmTitulo, String genero, String duracao, String anoLancamento,
                   boolean incluidoPlano, int temporadas, int epPorTemporada, int minPorEpisodio) {
         super(nmTitulo, genero, duracao, anoLancamento, incluidoPlano);
         this.temporadas = temporadas;
@@ -64,7 +64,12 @@ public class Series extends Titulos implements Classificacao {
     }
 
     @Override
-    public int getClassificacao() {
-        return 0;
+    public double getClassificacao() {
+        return super.getAvaliacao();
+    }
+
+    @Override
+    public String toString() {
+        return "Série: " + getNmTitulo() + " (" + getAnoLancamento() + ")";
     }
 }
